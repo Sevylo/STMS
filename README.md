@@ -100,6 +100,24 @@ Use the **Sort By** dropdown on the "My Tasks" page to organize your view:
 - **Custom Reminders**: Custom alerts sent at your specified date and time.
 - **Testing Reminders**: Run `php artisan reminders:send` to manually trigger reminder checks.
 
+### Screenshots
+**Login Page**
+<img width="1920" height="899" alt="image" src="https://github.com/user-attachments/assets/a557ba3f-2220-4e32-b187-38231d80fbc3" />
+**Register Page**
+<img width="1920" height="898" alt="image" src="https://github.com/user-attachments/assets/e64ac9b0-8899-4994-bd89-f2aedd167859" />
+**Reset Password Page**
+<img width="1920" height="891" alt="image" src="https://github.com/user-attachments/assets/5ec4b6f3-8b50-4d9e-bd6e-69bffda57705" />
+**Dashboard Page**
+<img width="1920" height="898" alt="image" src="https://github.com/user-attachments/assets/16fa72a3-ca92-43f8-a1c2-b5f56fcbb8cd" />
+**My Tasks Page**
+<img width="1920" height="897" alt="image" src="https://github.com/user-attachments/assets/dfae35c5-8498-43e5-b568-5f6c44e6e045" />
+**Add Task Form**
+<img width="1920" height="892" alt="image" src="https://github.com/user-attachments/assets/d82ec2d0-2195-46e6-aa9e-69c8d239dcea" />
+**Profile**
+<img width="1895" height="672" alt="image" src="https://github.com/user-attachments/assets/1d78e375-a614-4775-9910-0f701292792e" />
+<img width="1891" height="573" alt="image" src="https://github.com/user-attachments/assets/276d117c-71b4-48f5-95da-81aee7d10a19" />
+<img width="1898" height="306" alt="image" src="https://github.com/user-attachments/assets/4d249615-8629-425a-8516-1785b7a9dd05" />
+
 ## License
 
 This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
