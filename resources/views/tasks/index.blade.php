@@ -87,7 +87,6 @@
                                     </span>
                                 </div>
                             </div>
-                        </div>
                             
                             <p class="text-gray-600 text-sm mb-4 line-clamp-2 h-10">{{ $task->description ?? 'No description' }}</p>
                             
