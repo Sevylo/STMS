@@ -1,59 +1,105 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Simple Task Management System (STMS)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A robust and simple task management system built with Laravel 11. This application allows users to simpler manage their day-to-day tasks with features like priority tracking, deadline reminders, and task organization.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **User Authentication**: Secure Login and Registration system.
+- **Task Management**:
+    - Create, Read, Update, and Delete (CRUD) tasks.
+    - Set task priorities (High, Medium, Low) with color-coded badges.
+    - Set deadlines and optional custom reminders.
+    - Toggle task status (Pending/Completed).
+- **Organization & Sorting**:
+    - **Separate "My Tasks" Page**: Dedicated space for task management.
+    - **Sorting**: Sort tasks by **Priority** (High to Low) or **Deadline** (Earliest to Latest).
+    - **Dashboard Stats**: Quick overview of Total, Pending, and Completed tasks.
+- **Modern UI/UX**:
+    - Clean, sticky navigation bar.
+    - Responsive card layout for tasks.
+    - Visual cues for task status and priority.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Framework**: [Laravel 11](https://laravel.com)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com)
+- **Database**: MySQL (compatible with MariaDB, SQLite, PostgreSQL)
+- **Frontend**: Blade Templating Engine with Alpine.js
 
-## Learning Laravel
+## Installation & Setup
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Follow these steps to set up the project locally:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Sevylo/STMS.git
+   cd STMS
+   ```
 
-## Laravel Sponsors
+2. **Install Composer Dependencies**
+   ```bash
+   composer install
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. **Install NPM Dependencies**
+   ```bash
+   npm install
+   ```
 
-### Premium Partners
+4. **Environment Configuration**
+   Copy the example environment file and configure your database settings:
+   ```bash
+   cp .env.example .env
+   ```
+   Update `.env` with your database credentials:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database_name
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+5. **Generate Application Key**
+   ```bash
+   php artisan key:generate
+   ```
 
-## Contributing
+6. **Run Migrations**
+   ```bash
+   php artisan migrate
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+7. **Start the Development Server**
+   ```bash
+   # Run the Laravel server
+   php artisan serve
 
-## Code of Conduct
+   # Run the Vite development server (in a separate terminal)
+   npm run dev
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Access the application at `http://localhost:8000`.
 
-## Security Vulnerabilities
+## Usage Guide
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Creating a Task
+1. Navigate to **My Tasks**.
+2. Click the **+ Create Task** button.
+3. Fill in the Title, Description, Deadline, Priority, and optional Reminder.
+4. Click **Save Task**.
+
+### Sorting Tasks
+Use the **Sort By** dropdown on the "My Tasks" page to organize your view:
+- **Priority**: Sorts tasks from High -> Medium -> Low priority.
+- **Deadline**: Sorts tasks from the earliest deadline to the latest.
+
+### Notifications
+- **Deadline Reminders**: Automated reminders sent 7 days, 3 days, and 1 day before the deadline.
+- **Custom Reminders**: Custom alerts sent at your specified date and time.
+- **Testing Reminders**: Run `php artisan reminders:send` to manually trigger reminder checks.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
