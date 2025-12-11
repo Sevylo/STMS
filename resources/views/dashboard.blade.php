@@ -115,7 +115,7 @@
             </div>
             
             @if($tasks->isEmpty())
-                <div class="text-center py-12 text-gray-500 dark:text-gray-400">
+                <div class="text-center py-12 text-gray-500">
                     <p>No tasks found. Create one to get started!</p>
                 </div>
             @endif
