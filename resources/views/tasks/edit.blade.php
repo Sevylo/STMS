@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <form method="POST" action="{{ route('tasks.update', $task) }}" class="space-y-6">
                         @csrf
-                        @method('PATCH')
+                        @method('PUT')
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Title</label>
