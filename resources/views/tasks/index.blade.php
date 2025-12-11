@@ -77,10 +77,12 @@
                         <div class="p-6">
                             <div class="flex justify-between items-start mb-2">
                                 <h3 class="font-bold text-lg text-gray-800 truncate pr-2" title="{{ $task->title }}">{{ $task->title }}</h3>
-                                <div class="flex items-center gap-1">
                                     <span class="text-xs text-gray-500 font-medium">Status:</span>
                                     <span class="px-2 py-1 text-xs rounded-full font-semibold {{ $task->status === 'completed' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800' }}">
                                         {{ ucfirst($task->status) }}
+                                    </span>
+                                    <span class="px-2 py-1 text-xs rounded-full font-semibold {{ $task->priority === 'high' ? 'bg-red-100 text-red-800' : ($task->priority === 'medium' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800') }}">
+                                        {{ ucfirst($task->priority) }}
                                     </span>
                                 </div>
                             </div>
