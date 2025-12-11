@@ -17,7 +17,21 @@
             @endif
 
             <!-- Actions Bar -->
-            <div class="flex justify-end px-4 sm:px-0">
+            <div class="flex justify-end gap-2 px-4 sm:px-0">
+                <div x-data="{ openSort: false }" class="relative">
+                    <button @click="openSort = !openSort" class="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/></svg>
+                        Sort By
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div x-show="openSort" @click.away="openSort = false" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50 ring-1 ring-black ring-opacity-5" style="display: none;">
+                        <div class="py-1">
+                            <a href="{{ route('tasks.index', ['sort' => 'priority']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Priority (High to Low)</a>
+                            <a href="{{ route('tasks.index', ['sort' => 'deadline']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Deadline (Earliest First)</a>
+                        </div>
+                    </div>
+                </div>
+
                 <button @click="openCreate = true" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow-md transition duration-150 flex items-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                     Create Task
