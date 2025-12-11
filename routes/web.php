@@ -10,11 +10,18 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [TaskController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', function () {
+        $totalTasks = \Illuminate\Support\Facades\Auth::user()->tasks()->count();
+        $pendingTasks = \Illuminate\Support\Facades\Auth::user()->tasks()->where('status', 'pending')->count();
+        $completedTasks = \Illuminate\Support\Facades\Auth::user()->tasks()->where('status', 'completed')->count();
+        return view('dashboard', compact('totalTasks', 'pendingTasks', 'completedTasks'));
+    })->name('dashboard');
+
+    Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
     Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
     Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
     Route::get('/notifications/read', [TaskController::class, 'markNotificationsRead'])->name('notifications.markAsRead');
-    Route::patch('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+    Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update'); // Changed to put to match controller validation
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
     Route::patch('/tasks/{task}/toggle', [TaskController::class, 'togglestatus'])->name('tasks.toggle');
 });

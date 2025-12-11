@@ -17,7 +17,7 @@ class TaskController extends Controller
             ->orderBy('deadline', 'asc')
             ->get();
             
-        return view('dashboard', compact('tasks'));
+        return view('tasks.index', compact('tasks'));
     }
 
     /**
@@ -29,6 +29,7 @@ class TaskController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'deadline' => 'required|date',
+            'reminder_at' => 'nullable|date',
             'priority' => 'required|in:low,medium,high',
         ]);
 
@@ -36,11 +37,12 @@ class TaskController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'deadline' => $request->deadline,
+            'reminder_at' => $request->reminder_at,
             'priority' => $request->priority,
             'status' => 'pending',
         ]);
 
-        return redirect()->route('dashboard')->with('success', 'Task created successfully.');
+        return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
 
     public function edit(Task $task)
@@ -73,12 +75,13 @@ class TaskController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'deadline' => 'required|date',
+            'reminder_at' => 'nullable|date',
             'priority' => 'required|in:low,medium,high',
         ]);
 
         $task->update($request->all());
 
-        return redirect()->route('dashboard')->with('success', 'Task updated successfully.');
+        return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
     }
     
     public function togglestatus(Task $task)
@@ -105,6 +108,6 @@ class TaskController extends Controller
 
         $task->delete();
 
-        return redirect()->route('dashboard')->with('success', 'Task deleted successfully.');
+        return redirect()->route('tasks.index')->with('success', 'Task deleted successfully.');
     }
 }

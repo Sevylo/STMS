@@ -34,25 +34,31 @@ class SendStartReminders extends Command
         foreach ($tasks as $task) {
             $deadline = Carbon::parse($task->deadline);
             $now = Carbon::now();
-            $diffInDays = $now->diffInDays($deadline, false);
+            
+            // Check custom reminder
+            if ($task->reminder_at) {
+                $reminderAt = Carbon::parse($task->reminder_at);
+                if ($reminderAt->isToday() && $reminderAt->gte($now)) {
+                     // Simple logic: If reminder is "today" and "future" (or just today if running daily).
+                     // Since command runs daily, checking isToday is sufficient. 
+                     // To avoid duplicates if run multiple times, ideally we'd track it. 
+                     // For MVP, we'll just check isToday.
+                     $task->user->notify(new TaskDeadlineReminder($task, 'Custom Reminder'));
+                     $this->info("Sent custom reminder for task: {$task->title}");
+                     $count++;
+                     continue; // Skip default checks if custom reminder sent
+                }
+            }
 
-            // Check for exact days (ignoring time slightly, checking if it falls within the day range)
-            // Actually diffInDays returns integer difference. 
-            // Better to check if deadline is between start of day + X and end of day + X? 
-            // Simple check: 
-            // If deadline is 2025-01-08 and today is 2025-01-01 (7 days).
+            // Default deadline warnings (7, 3, 1 days) - Only if no custom reminder set or not today?
+            // Let's keep them independent or prioritized? 
+            // Independent is better.
             
-            // Let's be precise: 
-            // 7 days rem: deadline is in 7 days (diff 7)
-            // 3 days rem: deadline is in 3 days (diff 3)
-            // 1 day rem: deadline is in 1 day (diff 1)
-            
-            // We use simple integer cast comparison for day difference
             $days = (int) ceil($now->floatDiffInDays($deadline, false));
 
             if (in_array($days, [7, 3, 1])) {
                 $task->user->notify(new TaskDeadlineReminder($task, $days));
-                $this->info("Sent reminder for task: {$task->title} ({$days} days left)");
+                $this->info("Sent deadline reminder for task: {$task->title} ({$days} days left)");
                 $count++;
             }
         }

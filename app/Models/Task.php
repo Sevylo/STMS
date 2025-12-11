@@ -16,6 +16,12 @@ class Task extends Model
         'status',
         'priority',
         'user_id',
+        'reminder_at',
+    ];
+
+    protected $casts = [
+        'deadline' => 'datetime',
+        'reminder_at' => 'datetime',
     ];
 
     public function user()
