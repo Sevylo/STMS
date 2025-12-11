@@ -68,7 +68,7 @@
             <!-- Task List Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($tasks as $task)
-                    <div class="bg-white overflow-hidden shadow-sm rounded-xl hover:shadow-lg transition-shadow duration-300 border-l-4 {{ $task->priority === 'high' ? 'border-red-500' : ($task->priority === 'medium' ? 'border-orange-500' : 'border-yellow-500') }}">
+                    <div class="bg-white overflow-hidden shadow-sm rounded-xl hover:shadow-lg transition-shadow duration-300 border-l-4 {{ $task->priority === 'high' ? 'border-red-500' : ($task->priority === 'medium' ? 'border-yellow-500' : 'border-green-500') }}">
                         <div class="p-6">
                             <div class="flex justify-between items-start mb-2">
                                 <h3 class="font-bold text-lg text-gray-800 truncate pr-2" title="{{ $task->title }}">{{ $task->title }}</h3>
